@@ -31,9 +31,19 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 
 // Working from home
 slapp
-  .message('^(working from home|wfh)$', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg
-      .say(lang_wfh)
+  .message('(working from home)|(wfh)', ['direct_mention', 'direct_message'], (msg) => {
+    msg.say(lang_wfh)
+  
+  var string = msg.body.event.text
+
+  if (string.includes('confirmation')) {
+    msg.say('Confirming with manager')
+    if (string.includes('no')) {
+      msg.say('denied')
+    } else {
+      msg.say('accepted')
+    }
+  }
   })
   .action('wfh_callback', (msg, text) => {
     msg.say('Okay, cancelling your work from home day today')
@@ -49,7 +59,8 @@ slapp
   .action('sick_callback', (msg, text) => {
     msg.say('Okay, cancelling your sick day today')
   })
-  
+
+
 
 // Hello flows
 slapp.message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
