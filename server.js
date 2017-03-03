@@ -18,6 +18,7 @@ var slapp = Slapp({
 
 var HELP_TEXT = `help text`
 let lang_wfh = require('./language/wfh.json')
+let lang_sick = require('./language/sick.json')
 
 //*********************************************
 // Setup different handlers for messages
@@ -28,24 +29,35 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
-// "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
+// Working from home
 slapp
-  .message('^(working from home|wfh)', ['direct_mention', 'direct_message'], (msg, text) => {
+  .message('^(working from home|wfh)$', ['direct_mention', 'direct_message'], (msg, text) => {
     msg
       .say(lang_wfh)
   })
   .action('wfh_callback', (msg, text) => {
-    msg.say('Okay, cancelling you\'re work from home session today')
+    msg.say('Okay, cancelling your work from home day today')
   })
-  .message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg
-      .say(`${text}, how are you?`)
+  
+
+// Sick days
+slapp
+  .message('^(sick day|sick)$', ['direct_mention', 'direct_message'], (msg, text) => {
+      msg
+        .say(lang_sick)
+    })
+  .action('sick_callback', (msg, text) => {
+    msg.say('Okay, cancelling your sick day today')
+  })
+  
+
+// Hello flows
+slapp.message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg.say(`${text}, how are you?`)
   })
 
-// Can use a regex as well
+// Thank you flows
 slapp.message(/^(thx|thnx|thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
-  // You can provide a list of responses, and a random one will be chosen
-  // You can also include slack emoji in your responses
   msg.say([
     "You're welcome :smile:",
     'You bet',
