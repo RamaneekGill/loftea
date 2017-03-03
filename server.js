@@ -30,7 +30,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
 slapp
-  .message('working from home', ['direct_mention', 'direct_message'], (msg, text) => {
+  .message('^(working from home|wfh)', ['direct_mention', 'direct_message'], (msg, text) => {
     msg
       .say(lang_wfh)
   })
