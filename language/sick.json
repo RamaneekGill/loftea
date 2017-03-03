@@ -1,0 +1,21 @@
+{
+    "text": "",
+    "attachments": [
+        {
+            "text": "Registering you as taking a sick day today",
+            "fallback": "Registering you as taking a sick today",
+            "callback_id": "sick_callback",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "cancel",
+                    "text": "Cancel",
+                    "style": "danger",
+                    "type": "button",
+                    "value": "cancel"
+                }
+            ]
+        }
+    ]
+}
