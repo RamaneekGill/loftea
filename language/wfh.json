@@ -1,0 +1,21 @@
+{
+    "text": "",
+    "attachments": [
+        {
+            "text": "Registering you as working from home today",
+            "fallback": "Registering you as working from home today",
+            "callback_id": "wfh_callback",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "cancel",
+                    "text": "Cancel",
+                    "style": "danger",
+                    "type": "button",
+                    "value": "cancel"
+                }
+            ]
+        }
+    ]
+}
